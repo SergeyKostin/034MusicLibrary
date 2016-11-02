@@ -1,11 +1,11 @@
 
-package project_1;
+package model;
 
 import java.util.ArrayList;
 
 public class Genre { 
     private String nameOfGenre; 
-     private ArrayList<Track> tracks; 
+     private ArrayList<Track> tracks=new ArrayList<Track>(); 
  
  
      public Genre(String nameOfGenre, ArrayList<Track> tracks) { 
@@ -37,7 +37,9 @@ public class Genre {
          Track newTrack = new Track(nameOfTrack, album, band, duration); 
          tracks.add(newTrack); 
      } 
- 
+     public void addTrack(Track track){
+         this.tracks.add(track);
+     }
  
      public void deleteTrack(int index) { 
          tracks.remove(index); 
