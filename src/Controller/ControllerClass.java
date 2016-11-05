@@ -6,6 +6,7 @@
 package Controller;
 
 import View.ViewClass;
+import java.util.Scanner;
 import model.Genre;
 import model.GenreList;
 import model.Track;
@@ -17,6 +18,11 @@ public class ControllerClass {
     public ControllerClass(GenreList model, ViewClass view){
         this.model=model;
         this.view=view;
+    }
+
+    public ControllerClass() {
+        this.model=new GenreList();
+        this.view=new ViewClass();      
     }
     
     public GenreList getGenreList(){
@@ -72,20 +78,26 @@ public class ControllerClass {
     }
     
     
-    public void printTrackList(GenreList model){
+    public void printTrackList(){
         this.view.printTrackList(model);
     }
-    public void printTrackListByNameOfGenre(String nameGenre,GenreList model){
+    public void printTrackListByNameOfGenre(String nameGenre){
         this.view.printTrackListByNameOfGenre(nameGenre, model);
     }
   
-    public void printTrackListByIndexOfGenre(int indexGenre,GenreList model){
+    public void printTrackListByIndexOfGenre(int indexGenre){
         this.view.printTrackListByIndexOfGenre(indexGenre, model);
     }
-    public void printTrackListByBand(String band,GenreList model){
+    public void printTrackListByBand(String band){
         this.view.printTrackListByBand(band, model);
     }
-    public void printTrackListByAlbum(String album,GenreList model){
+    public void printTrackListByAlbum(String album){
         this.view.printTrackListByAlbum(album, model);
+    }
+    public GenreList read1TrackList(){
+        return this.view.readTrackList();
+    }
+    public void readTrackList(){
+        this.model=this.view.readTrackList();
     }
 }
