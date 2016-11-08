@@ -6,98 +6,119 @@
 package Controller;
 
 import View.ViewClass;
-import java.util.Scanner;
-import model.Genre;
-import model.GenreList;
-import model.Track;
+
+import trackList.Genre;
+import trackList.GenreList;
+import trackList.Track;
 
 public class ControllerClass {
     private GenreList model;
     private ViewClass view;
-     
-    public ControllerClass(GenreList model, ViewClass view){
-        this.model=model;
-        this.view=view;
+
+    public ControllerClass(GenreList model, ViewClass view) {
+        this.model = model;
+        this.view = view;
     }
 
     public ControllerClass() {
-        this.model=new GenreList();
-        this.view=new ViewClass();      
+        this.model = new GenreList();
+        this.view = new ViewClass();
     }
-    
-    public GenreList getGenreList(){
+
+    public GenreList getGenreList() {
         return this.model;
     }
-    public void setGenreList(GenreList model){
-        this.model=model;
+
+    public void setGenreList(GenreList model) {
+        this.model = model;
     }
-    public Genre getGenre(int index){
+
+    public Genre getGenre(int index) {
         return this.model.getGenre(index);
     }
-    public void setGenre(int index, Genre genre){
+
+    public void setGenre(int index, Genre genre) {
         this.setGenre(index, genre);
     }
-    public Track getTrack(String nameTrack){
+
+    public Track getTrack(String nameTrack) {
         return this.getTrack(nameTrack);
     }
-    public int getGenreListSize(){
+
+    public int getGenreListSize() {
         return this.getGenreListSize();
     }
-    public void addGenre(int index, Genre newGenre){
+
+    public void addGenre(int index, Genre newGenre) {
         this.model.addGenre(index, newGenre);
     }
-    public void deleteGenre(int index){
+
+    public void deleteGenre(int index) {
         this.deleteGenre(index);
     }
-    public void sortGenres(){
+
+    public void sortGenres() {
         this.sortGenres();
     }
-    public void setNameOfGenre(String newNameOfGenre,int index){
+
+    public void setNameOfGenre(String newNameOfGenre, int index) {
         this.model.setNameOfGenre(newNameOfGenre, index);
     }
-    public void setTrack(int indexGenre,Track newTrack,int index){
+
+    public void setTrack(int indexGenre, Track newTrack, int index) {
         this.setTrack(indexGenre, newTrack, index);
     }
-    public void addTrack(String nameOfGenre,String nameOfTrack, String album, String band, String duration){
+
+    public void addTrack(String nameOfGenre, String nameOfTrack, String album, String band, String duration) {
         this.model.addTrack(nameOfGenre, nameOfTrack, album, band, duration);
     }
-    public void addTrack(int indexByGenre,String nameOfTrack, String album, String band, String duration){
+
+    public void addTrack(int indexByGenre, String nameOfTrack, String album, String band, String duration) {
         this.model.addTrack(indexByGenre, nameOfTrack, album, band, duration);
     }
-    public void deleteTrack(String nameOfGenre,int index){
+
+    public void deleteTrack(String nameOfGenre, int index) {
         this.model.deleteTrack(nameOfGenre, index);
     }
-    public void deleteTrack(int indexByGenre,int index){
+
+    public void deleteTrack(int indexByGenre, int index) {
         this.model.deleteTrack(indexByGenre, index);
     }
-    public void sortTracks(String nameOfGenre,String type){
+
+    public void sortTracks(String nameOfGenre, String type) {
         this.model.sortTracks(nameOfGenre, type);
     }
-    public void sortTracks(int indexOfGenre,String type){
+
+    public void sortTracks(int indexOfGenre, String type) {
         this.model.sortTracks(indexOfGenre, type);
     }
-    
-    
-    public void printTrackList(){
+
+
+    public void printTrackList() {
         this.view.printTrackList(model);
     }
-    public void printTrackListByNameOfGenre(String nameGenre){
+
+    public void printTrackListByNameOfGenre(String nameGenre) {
         this.view.printTrackListByNameOfGenre(nameGenre, model);
     }
-  
-    public void printTrackListByIndexOfGenre(int indexGenre){
+
+    public void printTrackListByIndexOfGenre(int indexGenre) {
         this.view.printTrackListByIndexOfGenre(indexGenre, model);
     }
-    public void printTrackListByBand(String band){
+
+    public void printTrackListByBand(String band) {
         this.view.printTrackListByBand(band, model);
     }
-    public void printTrackListByAlbum(String album){
+
+    public void printTrackListByAlbum(String album) {
         this.view.printTrackListByAlbum(album, model);
     }
-    public GenreList read1TrackList(){
+
+    public GenreList read1TrackList() {
         return this.view.readTrackList();
     }
-    public void readTrackList(){
-        this.model=this.view.readTrackList();
+
+    public void readTrackList() {
+        this.model = this.view.readTrackList();
     }
 }
