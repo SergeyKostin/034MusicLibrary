@@ -1,9 +1,9 @@
-package model;
+package trackList;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface Repository {
     Track getTrackByName(String name);
     Track findTrackByName(String name);
-    List<Track> scanForTracks();
+    ArrayList<Track> scanForTracks(String path);
 }
