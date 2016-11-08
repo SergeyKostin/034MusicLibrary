@@ -2,11 +2,8 @@
 package mvc_Main;
 
 import Controller.ControllerClass;
-import View.ViewClass;
-import java.util.Scanner;
-import model.Genre;
-import model.GenreList;
-import model.Track;
+import trackList.Genre;
+import trackList.GenreList;
 
 public class mvc_MainClass {
     
