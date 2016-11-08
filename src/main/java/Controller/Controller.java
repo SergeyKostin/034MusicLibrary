@@ -1,6 +1,6 @@
 package Controller;
 import java.util.List;
-import model.Track;
+import trackList.Track;
 
 public interface Controller {
     
