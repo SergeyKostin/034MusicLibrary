@@ -1,16 +1,17 @@
 
 package mvc_Main;
 
+import Controller.Controller;
 import Controller.ControllerClass;
-import trackList.Genre;
-import trackList.GenreList;
+import java.io.IOException;
+
 
 public class mvc_MainClass {
     
-     public static void main(String[] args){
-         ControllerClass controller=new ControllerClass();
-         controller.readTrackList();
-         controller.printTrackList();
+     public static void main(String[] args) throws IOException{
+        ControllerClass controller=new ControllerClass();
+        controller.Comand();
+        
      }
      
 }

@@ -1,124 +1,89 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controller;
 
 import View.ViewClass;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-import trackList.Genre;
-import trackList.GenreList;
+
 import trackList.Track;
+import trackList.TrackList;
 
-public class ControllerClass {
-    private GenreList model;
+public class ControllerClass implements Controller {
+
     private ViewClass view;
-
-    public ControllerClass(GenreList model, ViewClass view) {
-        this.model = model;
-        this.view = view;
+    private TrackList model;
+    
+    public ControllerClass(){
+        this.model=new TrackList();
+        this.view=new ViewClass();
+    }
+    @Override
+    public void createTrack() {
+        
     }
 
-    public ControllerClass() {
-        this.model = new GenreList();
-        this.view = new ViewClass();
+    @Override
+    public void createPlayList(ArrayList<Track> tracks) {
+        this.model=new TrackList((ArrayList<Track>) tracks);
     }
 
-    public GenreList getGenreList() {
-        return this.model;
+    @Override
+    public Track getTrackByName(String name) {
+        return this.model.getTrackByNameOfTrack(name);
     }
 
-    public void setGenreList(GenreList model) {
-        this.model = model;
+    @Override
+    public ArrayList<Track> getTracksByPlayList() {
+       return this.model.getTracks();
     }
 
-    public Genre getGenre(int index) {
-        return this.model.getGenre(index);
+    @Override
+    public List<Track> scanForTracks() {
+        return null;
     }
-
-    public void setGenre(int index, Genre genre) {
-        this.setGenre(index, genre);
+    
+    
+    
+    
+     public void Comand() throws IOException{
+        Scanner in=new Scanner(System.in);
+        String str="yes";
+        while(str.equals("yes")){
+       String comand= this.view.Comands();
+       switch (comand){
+           case "read console":
+           {   
+               this.model=this.view.scanTrackList();
+               break;
+           }
+           case "print console":
+           {  
+              this.view.printTrackList(model);
+               break;
+           }
+           case "read txt" :
+           {
+               String nameTxt=this.view.NameTxt();
+               this.model=this.view.ReadTxtTrackList(nameTxt);
+           }
+           case "write txt" :
+           {
+               String nameTxt=this.view.NameTxt();
+               this.view.WriterTxtTrackList(model, nameTxt);
+           }
+           case "write XML":
+           {
+               String nameXML=this.view.NameTxt();
+               this.view.WriterXmlTrackList(model, nameXML);
+           }
+           
+       }
+       System.out.println("Желаете ввести еще команду? 'yes' or 'no'");
+       str=in.nextLine();
     }
-
-    public Track getTrack(String nameTrack) {
-        return this.getTrack(nameTrack);
-    }
-
-    public int getGenreListSize() {
-        return this.getGenreListSize();
-    }
-
-    public void addGenre(int index, Genre newGenre) {
-        this.model.addGenre(index, newGenre);
-    }
-
-    public void deleteGenre(int index) {
-        this.deleteGenre(index);
-    }
-
-    public void sortGenres() {
-        this.sortGenres();
-    }
-
-    public void setNameOfGenre(String newNameOfGenre, int index) {
-        this.model.setNameOfGenre(newNameOfGenre, index);
-    }
-
-    public void setTrack(int indexGenre, Track newTrack, int index) {
-        this.setTrack(indexGenre, newTrack, index);
-    }
-
-    public void addTrack(String nameOfGenre, String nameOfTrack, String album, String band, String duration) {
-        this.model.addTrack(nameOfGenre, nameOfTrack, album, band, duration);
-    }
-
-    public void addTrack(int indexByGenre, String nameOfTrack, String album, String band, String duration) {
-        this.model.addTrack(indexByGenre, nameOfTrack, album, band, duration);
-    }
-
-    public void deleteTrack(String nameOfGenre, int index) {
-        this.model.deleteTrack(nameOfGenre, index);
-    }
-
-    public void deleteTrack(int indexByGenre, int index) {
-        this.model.deleteTrack(indexByGenre, index);
-    }
-
-    public void sortTracks(String nameOfGenre, String type) {
-        this.model.sortTracks(nameOfGenre, type);
-    }
-
-    public void sortTracks(int indexOfGenre, String type) {
-        this.model.sortTracks(indexOfGenre, type);
-    }
-
-
-    public void printTrackList() {
-        this.view.printTrackList(model);
-    }
-
-    public void printTrackListByNameOfGenre(String nameGenre) {
-        this.view.printTrackListByNameOfGenre(nameGenre, model);
-    }
-
-    public void printTrackListByIndexOfGenre(int indexGenre) {
-        this.view.printTrackListByIndexOfGenre(indexGenre, model);
-    }
-
-    public void printTrackListByBand(String band) {
-        this.view.printTrackListByBand(band, model);
-    }
-
-    public void printTrackListByAlbum(String album) {
-        this.view.printTrackListByAlbum(album, model);
-    }
-
-    public GenreList read1TrackList() {
-        return this.view.readTrackList();
-    }
-
-    public void readTrackList() {
-        this.model = this.view.readTrackList();
-    }
+   
+}
 }
