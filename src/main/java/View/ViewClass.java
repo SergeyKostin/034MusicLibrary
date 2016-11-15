@@ -123,7 +123,7 @@ public class ViewClass implements View {
         return trackList;
     }
     public String NameTxt(){
-        System.out.println("Введите путь к файлу и имя файла через слеш: ");
+        System.out.println("Введите путь к файлу и имя файла через слеш (без расширения xml): ");
         Scanner in=new Scanner(System.in);
         String str=in.nextLine();
         return str;
