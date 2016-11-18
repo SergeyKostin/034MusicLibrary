@@ -1,5 +1,5 @@
 package View;
-import trackList.TrackList;
+import model.TrackList;
 
 public interface View {
     public void printTrackList(TrackList trackList);

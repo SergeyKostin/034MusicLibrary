@@ -6,14 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-
-import trackList.Track;
-import trackList.TrackList;
+import model.RepositoryClass;
+import model.Track;
+import model.TrackList;
 
 public class ControllerClass implements Controller {
 
-    private ViewClass view;
+  private ViewClass view;
     private TrackList model;
     
     public ControllerClass(){
@@ -52,7 +51,7 @@ public class ControllerClass implements Controller {
         Scanner in=new Scanner(System.in);
         String str="yes";
         while(str.equals("yes")){
-       String comand= this.view.Comands();
+       String comand=this.view.Comands();
        switch (comand){
            case "read console":
            {   
@@ -68,16 +67,30 @@ public class ControllerClass implements Controller {
            {
                String nameTxt=this.view.NameTxt();
                this.model=this.view.ReadTxtTrackList(nameTxt);
+               break;
            }
            case "write txt" :
            {
                String nameTxt=this.view.NameTxt();
                this.view.WriterTxtTrackList(model, nameTxt);
+               break;
            }
-           case "write XML":
+           case "write xml":
            {
                String nameXML=this.view.NameTxt();
-               this.view.WriterXmlTrackList(model, nameXML);
+               RepositoryClass.WriterXmlTrackList(model, nameXML);
+               break;
+           }
+           case "read xml":
+           {
+               String nameXML=this.view.NameTxt();
+               this.model=RepositoryClass.ReadXmlTrackList(nameXML);
+               break;
+           }
+           case "read mp3":
+           {
+               String nameXML=this.view.NameTxt();
+               this.model=RepositoryClass.scanForTrack(nameXML);
            }
            
        }

@@ -1,7 +1,7 @@
 package Controller;
 import java.util.ArrayList;
 import java.util.List;
-import trackList.Track;
+import model.Track;
 
 public interface Controller {
     
