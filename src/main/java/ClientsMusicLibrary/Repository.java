@@ -1,4 +1,4 @@
-package model;
+package ClientsMusicLibrary;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
-package model;
+package ClientsMusicLibrary;
 
-import com.sun.xml.internal.txw2.output.XmlSerializer;
+//import com.sun.xml.internal.txw2.output.XmlSerializer;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
@@ -51,9 +51,8 @@ public class RepositoryClass
 
          FileOutputStream out = new FileOutputStream(str+".xml"); 
           XMLEncoder xml = new XMLEncoder(out);
-           
-          //xml.writeObject(tracList);
           xml.writeObject(tracList.getTracks().size());
+          xml.writeObject(tracList.getNameTrackList());
           for(int i=0;i<tracList.getTracks().size();i++)
           xml.writeObject(tracList.getTrack(i).getName()+";"+tracList.getTrack(i).getAlbum()+";"+tracList.getTrack(i).getBand()+";"+tracList.getTrack(i).getDuration()+";"+tracList.getTrack(i).getGenre()+";");
        
@@ -66,10 +65,12 @@ public class RepositoryClass
           FileInputStream in=new FileInputStream(str+".xml");
          // BufferedInputStream buf=new BufferedInputStream(in);
           XMLDecoder xml = new XMLDecoder(in);
-          TrackList trackList=new TrackList();
+          //TrackList trackList=new TrackList();
           String tracks;
           int index=0;
           int size=(int) xml.readObject();
+          String nameOfTrack=(String) xml.readObject();
+          TrackList trackList=new TrackList(nameOfTrack);
 //          trackList=(TrackList) xml.readObject();
           while(index<size){
                tracks=(String) xml.readObject();
@@ -82,13 +83,15 @@ public class RepositoryClass
                trackList.addTrack(index, track);
                index++;}
         
-           
-          
-          
-
-          xml.close();
+           xml.close();
           return trackList;
           
         
     }
+    public static void WriterXmlTrack(Track track, String str) throws FileNotFoundException{
+         FileOutputStream out = new FileOutputStream(str+".xml"); 
+         XMLEncoder xml = new XMLEncoder(out);
+         xml.writeObject(track.getName()+";"+track.getAlbum()+";"+track.getBand()+";"+track.getDuration()+";"+track.getGenre()+";");
+         xml.close();
+        }
 }
